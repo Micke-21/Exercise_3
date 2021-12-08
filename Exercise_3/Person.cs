@@ -14,8 +14,6 @@ namespace Exercise_3
         private double height;
         private double weight;
 
-
-
         public int Age
         {
             get { return age; }
@@ -63,5 +61,10 @@ namespace Exercise_3
         public double Height { get { return height; } set { height = value; } }
         public double Weight { get { return weight; } set { weight = value; } }
 
+        public override string ToString()
+        {
+            //return base.ToString();
+            return $"{FName} {LName} is {Age} year {Height} {Weight}. ";
+        }
     }
 }
