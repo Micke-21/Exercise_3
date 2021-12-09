@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Exercise_3
 {
+    /// <summary>
+    /// Övning 3 C# Övningssamling - Inkapsling, arv och polymorfism
+    /// 
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
@@ -18,7 +22,7 @@ namespace Exercise_3
                 person.Height = 180;
                 person.Weight = 50;
 
-                Console.WriteLine(person);
+                //Console.WriteLine(person);
             }
             catch (ArgumentException ae)
             {
@@ -57,9 +61,9 @@ namespace Exercise_3
                 phPerson4 = personHandler.CratePerson(12, "Ture", "Knyckertz", 130, 40);
                 phPerson5 = personHandler.CratePerson(55, "Paul", "Isman", 175, 90);
 
-                personHandler.PrintPerson(phPerson1); 
-                personHandler.PrintPerson(phPerson2); 
-                personHandler.PrintPerson(phPerson3); 
+                personHandler.PrintPerson(phPerson1);
+                personHandler.PrintPerson(phPerson2);
+                personHandler.PrintPerson(phPerson3);
                 personHandler.PrintPerson(phPerson4);
                 personHandler.PrintPerson(phPerson5);
 
@@ -92,16 +96,16 @@ namespace Exercise_3
             animals.Add(new Bird("Polly", 12, 1, 23));
             animals.Add(new Flamingo("Flamingo", 2, 3, 120, 40));
             animals.Add(new Swan("Svan", 3, 1, 200, 45));
-            animals.Add(new Pelican("Pelle", 4, 2, 300, 20));
+            animals.Add(new Pelican("Pelle pelican", 4, 2, 300, 20));
             animals.Add(new Wolfman("Wolf man", 78, 35, false));
 
             //3.3.5 Skriv ut vilka djur som finns i listan
-            foreach(var a in animals)
+            foreach (var a in animals)
             {
-                Console.WriteLine( a.Stats());
+                Console.WriteLine(a.Stats());
                 a.DoSound(); //3.3.6 
                 //3.3.7
-                if(a is IPerson)
+                if (a is IPerson)
                 {
                     var p = a as IPerson;
                     p.Talk();
@@ -112,39 +116,47 @@ namespace Exercise_3
             //3.3.8 List of dogs
             List<Dog> dogs = new List<Dog>();
 
-            //3.3.9 F: En häst är ju ingen hund
+            //ToDo 3.3.9 F: En häst är ju ingen hund
             //dogs.Add(new Horse("Hästen ´Polle", 450, 23, HorsType.Ridinghorse));
-            //3.3.10 F Listan måste vara av typen Animal för att alla djur skall kunna ligga i den 
+            //ToDo 3.3.10 F Listan måste vara av typen Animal för att alla djur skall kunna ligga i den 
 
             // 3.3.11
             Console.WriteLine("\nAlla Stats()");
 
             foreach (var a in animals)
             {
-                Console.WriteLine( $"Stats: {a.Stats()}"); 
+                Console.WriteLine($"Stats: {a.Stats()}");
             }
 
-            //3.3.13 F: Förklar vad det är som händer?
-            //ToDo Svara!
+            //ToDo 3.3.13 F: Förklara vad det är som händer?
+            //ToDo 3.3.13 S: Den mest specialiserade medtoden körs. 
+            //
+            // Kommentar: Jag tror det är många (inklusive mig själv) som tycker det här är lite
+            // klurigt när koden ligger långt ner i hiarkin men det är ändå den som körs fast man 
+            // har sagt att den skall var något annat som är högra upp!
+            // Men viist är det så att den måste vara "deklaread" högt upp tex i den abstrakta klassen
+            // för att det ska gå att komma åt den...
+           
 
             //3.3.14
             Console.WriteLine("\n3.3.14 Dog.Stats()");
-            foreach(var a in animals)
+            foreach (var a in animals)
             {
-                if(a is Dog){
+                if (a is Dog)
+                {
                     Console.WriteLine($"Dog.Stats: {a.Stats()}");
                 }
             }
 
 
-            //3.3.16 Kommer du åt Dog.SittFint() i animalslistan? Svar nej.
-            foreach( var a in animals)
+            //ToDo 3.3.16 Kommer du åt Dog.SittFint() i animalslistan? Svar: Nej.
+            foreach (var a in animals)
             {
                 //Console.WriteLine( a.SittFint()); // Kommer inte åt den
-                //3.3.17 Varför inte? SittFint är inte en medlem i Animals!
+                //ToDo 3.3.17 Varför inte? SittFint är inte en medlem i Animals!
 
                 //3.3.18 
-                if(a is Dog)
+                if (a is Dog)
                 {
                     var d = a as Dog;
                     Console.WriteLine($"Dog in Animals is sitting nice: {d.SittFint()}");
@@ -152,10 +164,30 @@ namespace Exercise_3
                 }
             }
 
-            //
+            //3.4.7
+            List<UserError> userErrors = new()
+            {
+                new NumericInputError(),
+                new TextInputError()
+            };
 
+            //3.4.8
+            Console.WriteLine("\n3.4.8 User Errors");
+            foreach (var ue in userErrors)
+            {
+                Console.WriteLine(ue.UEMessage());
+            }
 
+            //3.4.10
+            userErrors.Add(new MyOwnUserInputError());
+            userErrors.Add(new MyOwnToManyError());
+            userErrors.Add(new MyOwnObjectInputError());
 
+            Console.WriteLine("\n3.4.10 My User Errors");
+            foreach (var ue in userErrors)
+            {
+                Console.WriteLine(ue.UEMessage());
+            }
         }
     }
 }
