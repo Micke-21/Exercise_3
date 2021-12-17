@@ -12,13 +12,13 @@ namespace Exercise_3
         static void Main(string[] args)
         {
             // 3.1.1
-            Person person = new();
 
             try
             {
+                Person person = new("Peter", "Ekman");
                 person.Age = 55;
-                person.FName = "Pelle";
-                person.LName = "Karlsson";
+                //person.FName = "Pelle";
+                //person.LName = "Karlsson";
                 person.Height = 180;
                 person.Weight = 50;
 
@@ -136,7 +136,7 @@ namespace Exercise_3
             // har sagt att den skall var något annat som är högra upp!
             // Men viist är det så att den måste vara "deklaread" högt upp tex i den abstrakta klassen
             // för att det ska gå att komma åt den...
-           
+
 
             //3.3.14
             Console.WriteLine("\n3.3.14 Dog.Stats()");

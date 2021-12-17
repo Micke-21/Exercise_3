@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Exercise_3
+﻿namespace Exercise_3
 {
     public class Pelican : Bird
     {
@@ -13,6 +7,12 @@ namespace Exercise_3
         public Pelican(string name, int weight, int age, double wingSpan, double beakSize) : base(name, weight, age, wingSpan)
         {
             BeakSize = beakSize;
+        }
+
+        //3.3.2.PR
+        public override string Stats()
+        {
+            return $"{base.Stats()} BeakSize: {BeakSize}";
         }
 
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exercise_3
 {
@@ -13,6 +9,12 @@ namespace Exercise_3
         private string lName;
         private double height;
         private double weight;
+
+        public Person(string firstName, string lastName)
+        {
+            FName = firstName;
+            LName = lastName;
+        }
 
         public int Age
         {
@@ -37,7 +39,7 @@ namespace Exercise_3
             {
                 if (value.Length < 2 || value.Length > 10)
                 {
-                    throw new ArgumentException("First name must be min 2 and mas 10 chars");
+                    throw new ArgumentException("First name must be min 2 and max 10 chars");
                 }
                 else
                 {
